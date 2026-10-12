@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="theme-color" content="#071329"><meta name="description" content="یک جهان کوچک، آبی و رؤیایی؛ فقط برای تو.">
+<title>برای تو، از میان ستاره‌ها ♡</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="ambient" aria-hidden="true"><span class="glow g1"></span><span class="glow g2"></span><div id="stars"></div></div>
+<div id="welcome" class="welcome">
+  <div class="welcome-moon"><span>♡</span></div><p class="eyebrow">یه راز کوچیک بین تو و آسمون</p>
+  <h1>سلام، <span>ستاره‌ی قشنگم</span></h1>
+  <p class="welcome-copy">یه گوشه‌ی کوچیک از این جهان رو برات روشن کردم؛<br>آروم وارد شو، اینجا همه‌چیز با فکر تو ساخته شده.</p>
+  <button id="enter" class="button primary">باز کردن دنیای کوچیکم <span>✦</span></button>
+  <small>♫ موسیقی با لمس دکمه شروع می‌شه</small>
+</div>
+<header class="app-header"><a href="#top" class="wordmark"><span class="mini-star">✦</span> برای تو</a><button id="sound" class="sound-button" aria-label="روشن یا خاموش کردن موسیقی">♫ <span>موسیقی</span></button></header>
+<main id="top">
+<section class="hero page-pad">
+  <div class="hero-label"><span class="live-dot"></span> یه جهان کوچیک، فقط برای تو</div>
+  <h2>کاش می‌شد یه تیکه از <em>آسمون رو</em><br>بذارم توی دستات.</h2>
+  <p>پس یه دنیای کوچیک ساختم؛ پر از آبیِ آروم، ستاره‌های ریز و حرف‌هایی که شاید گفتنشون رو گذاشته بودم برای یه روز خاص.</p>
+  <div class="planet-scene" aria-label="سیاره‌ای درخشان میان ستاره‌ها"><div class="planet-ring"></div><div class="planet"><span class="planet-light"></span><i></i></div><span class="orbit-moon"></span><span class="spark s1">✦</span><span class="spark s2">✧</span><span class="spark s3">·</span><span class="spark s4">✦</span><div class="planet-caption">یه جای امن برای آرزوها</div></div>
+  <a class="scroll-link" href="#moments">آروم بیا پایین <span>↓</span></a>
+</section>
+<section id="moments" class="moments page-pad"><div class="section-intro"><span class="eyebrow">چهار گوشه‌ی کوچیک از این رؤیا</span><h2>کدومو اول <em>باز می‌کنی؟</em></h2><p>هر کدوم یه حس کوچیک برای تو قایم کرده.</p></div>
+<div class="tile-list">
+<button class="tile tile-flower" data-open="flower"><span class="tile-icon flower-icon">✿</span><span class="tile-text"><b>یه گل آبی برای تو</b><small>آروم لمسش کن تا شکوفه کنه</small></span><span class="tile-arrow">←</span></button>
+<button class="tile tile-letter" data-open="letter"><span class="tile-icon">♡</span><span class="tile-text"><b>چند حرف از ته دل</b><small>یه نامه‌ی کوچیک، فقط برای تو</small></span><span class="tile-arrow">←</span></button>
+<button class="tile tile-stars" data-open="stars"><span class="tile-icon">✧</span><span class="tile-text"><b>یه آسمون پرستاره</b><small>روی ستاره‌ها بزن و پیام پیدا کن</small></span><span class="tile-arrow">←</span></button>
+<button class="tile tile-wish" data-open="wish"><span class="tile-icon">☾</span><span class="tile-text"><b>آرزوت رو بسپار به ماه</b><small>یه آرزو توی دلت بکن</small></span><span class="tile-arrow">←</span></button>
+</div></section>
+<section class="little-note page-pad"><div class="note-orbit"><span>♡</span></div><span class="eyebrow">یه یادآوری کوچولو</span><h2>لازم نیست همیشه<br><em>قوی و بی‌نقص باشی.</em></h2><p>امیدوارم روزهای قشنگ پیدات کنن، دلت سبک باشه و یادت بمونه که خودت هم لایق همون مهربونی‌ای هستی که به بقیه می‌دی.</p><button class="button ghost" data-open="letter">بیشتر بخون <span>♡</span></button></section>
+<section class="ending page-pad"><div class="ending-stars">✦　·　✧　·　✦</div><h2>برای تو،<br><em>با تمام آبیِ دنیا.</em></h2><p>تولدت پر از لحظه‌هایی که دلت می‌خواد نگهشون داری.</p><button id="secret" class="secret-button">یه حرف مخفی مونده... <span>♡</span></button><footer>با فکر تو ساخته شده <span>✦</span></footer></section>
+</main>
+<nav class="bottom-nav" aria-label="ناوبری"><a href="#top"><span>⌂</span><small>خانه</small></a><a href="#moments"><span>✧</span><small>کشف کن</small></a><button id="navFlower"><span>✿</span><small>گل آبی</small></button><button id="navLetter"><span>♡</span><small>نامه</small></button></nav>
+<div id="overlay" class="overlay" hidden><section class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle"><div class="sheet-handle"></div><button id="close" class="close" aria-label="بستن">×</button><div id="sheetVisual" class="sheet-visual"></div><span id="sheetEyebrow" class="eyebrow">یه چیز کوچیک برای تو</span><h2 id="sheetTitle">گلی برای تو</h2><div id="sheetContent" class="sheet-content"></div><div id="sheetActions" class="sheet-actions"></div></section></div>
+<div id="toast" class="toast" role="status" aria-live="polite"></div><script src="script.js"></script>
+</body></html>
