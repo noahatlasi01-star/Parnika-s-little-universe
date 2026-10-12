@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#050b25">
+  <meta name="description" content="جهانی کوچک که با عشق و توجه، فقط برای تو ساخته شده است.">
+  <title>جهانی کوچک برای تو ✦</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div id="welcomeScreen" class="welcome-screen">
+    <div class="welcome-stars" aria-hidden="true">✦　·　✧　·　⋆　·　✦</div>
+    <div class="welcome-moon" aria-hidden="true"><span>♡</span></div>
+    <p class="welcome-kicker">یه چیز کوچیک، فقط برای تو</p>
+    <h1 class="welcome-title">سلام قشنگم،<br><em>به دنیای کوچیکت خوش اومدی.</em></h1>
+    <p class="welcome-text">یه گوشه‌ی کوچیک از آسمون رو برات کنار گذاشتم؛<br>پر از ستاره، آرزو و چندتا حرف که دلم می‌خواست بهت بگم.</p>
+    <button id="enterUniverse" class="welcome-button" type="button">بیا با هم واردش بشیم <span>♡</span></button>
+    <p class="welcome-hint">صدا با لمس این دکمه آروم شروع می‌شه ♫</p>
+  </div>
+
+  <div class="sky-noise" aria-hidden="true"></div>
+  <canvas id="starfield" aria-hidden="true"></canvas>
+  <div class="nebula nebula-one" aria-hidden="true"></div>
+  <div class="nebula nebula-two" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <a class="brand" href="#home" aria-label="خانه"><span class="brand-star">✦</span> جهانی کوچک برای تو</a>
+    <button id="soundToggle" class="icon-button" type="button" aria-label="روشن یا خاموش کردن موسیقی" title="موسیقی"><span id="soundIcon">♫</span><span id="soundState">موسیقی خاموش</span></button>
+  </header>
+
+  <main>
+    <section id="home" class="hero section-shell">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="eyebrow-line"></span> یه گوشه‌ی کوچیک از بی‌نهایت</p>
+        <h1>یه جای کوچیک توی این دنیا هست،<br><em>که فقط برای توئه.</em></h1>
+        <p class="hero-description">یه گوشه‌ی آروم از کهکشان؛ پر از ستاره، آرزوهای قشنگ و همه‌ی رنگ‌های آبی‌ای که دوست داری.</p>
+        <div class="hero-actions">
+          <a class="primary-button" href="#explore">بیا توی دنیای خودت <span>↙</span></a>
+          <button class="text-button" id="shootingStarButton" type="button">آرزو کن <span>✧</span></button>
+        </div>
+        <div class="hero-note"><span class="pulse-dot"></span> عجله نکن قشنگم؛ اینجا مال خودته.</div>
+      </div>
+      <div class="hero-art" aria-label="تصویری خیالی از سیاره‌ای آبی و ماه درخشان">
+        <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+        <div class="planet planet-main"><div class="planet-shine"></div></div>
+        <div class="moon"></div><div class="tiny-planet"></div>
+        <div class="orbit-label label-top">∞ &nbsp; شگفتی‌های کوچک</div>
+        <div class="orbit-label label-bottom">یک آسمان · بی‌نهایت امکان</div>
+        <span class="floating-star fs-one">✦</span><span class="floating-star fs-two">✧</span><span class="floating-star fs-three">✦</span>
+      </div>
+      <a class="scroll-cue" href="#explore"><span></span> برای کشف، پایین برو</a>
+    </section>
+
+    <section id="explore" class="section-shell explore-section">
+      <div class="section-heading">
+        <p class="eyebrow">صورت فلکی مخصوص تو</p>
+        <h2>جهانی از <em>چیزهای کوچک.</em></h2>
+        <p>هر ستاره یه قصه‌ی کوچیک داره. یکیش رو انتخاب کن ببین چی برات آورده.</p>
+      </div>
+      <div class="feature-grid">
+        <button class="feature-card card-stars" data-modal="stars" type="button">
+          <span class="card-number">۰۱ / آسمان</span><span class="card-icon">✦</span>
+          <span class="card-title">آسمانی پر از ستاره</span>
+          <span class="card-description">به آسمان شب دست بزن و پیام کوچکی را میان نورها پیدا کن.</span>
+          <span class="card-link">گشت‌وگذار در آسمان <b>↙</b></span><span class="card-glow"></span>
+        </button>
+        <button class="feature-card card-constellation" data-modal="constellation" type="button">
+          <span class="card-number">۰۲ / ستاره‌ی تو</span><span class="card-icon">✧</span>
+          <span class="card-title">نوشته‌شده با نور ستاره‌ها</span>
+          <span class="card-description">صورت فلکی کوچکی منتظر است تا ستاره‌هایش را به هم وصل کنی.</span>
+          <span class="card-link">ستاره‌ها را وصل کن <b>↙</b></span><span class="card-glow"></span>
+        </button>
+        <button class="feature-card card-flower" data-modal="flower" type="button">
+          <span class="card-number">۰۳ / هدیه‌ای کوچک</span><span class="card-icon">❋</span>
+          <span class="card-title">گلی از جنس آبی</span>
+          <span class="card-description">شکوفه‌ای کوچک برای روزی که سزاوار اتفاقی قشنگ است.</span>
+          <span class="card-link">بگذار شکوفه کند <b>↙</b></span><span class="card-glow"></span>
+        </button>
+        <button class="feature-card card-letter" data-modal="letter" type="button">
+          <span class="card-number">۰۴ / یک یادداشت</span><span class="card-icon">♡</span>
+          <span class="card-title">چند کلمه برای تو</span>
+          <span class="card-description">چند حرف صادقانه که در گوشه‌ای آرام از آسمان پنهان شده‌اند.</span>
+          <span class="card-link">نامه‌ات را باز کن <b>↙</b></span><span class="card-glow"></span>
+        </button>
+      </div>
+    </section>
+
+    <section class="wish-section section-shell">
+      <div class="wish-orb" aria-hidden="true"><span>✧</span></div>
+      <div class="wish-copy">
+        <p class="eyebrow">لحظه‌ای برای خودت</p>
+        <h2>یه آرزو کن؛<br><em>شاید آسمون برات نگهش داره.</em></h2>
+        <p>به چیزی فکر کن که امیدوار هستی روزگار به تو هدیه بدهد. بعد دکمه را بزن و آرزویت را به ستاره‌ها بسپار.</p>
+        <button id="wishButton" class="primary-button" type="button">آرزویم را به آسمان بسپار <span>✧</span></button>
+        <p id="wishFeedback" class="wish-feedback" aria-live="polite"></p>
+      </div>
+    </section>
+
+    <section class="final-section section-shell">
+      <div class="final-stars">✦　·　✧　·　✦</div>
+      <p class="eyebrow">پیش از رفتنت</p>
+      <h2>حتی بزرگ‌ترین جهان<br>از <em>نورهای کوچک</em> ساخته شده.</h2>
+      <p class="final-message">امیدوارم این چند دقیقه لبخند بیاره رو لبت؛ چون خودت، حتی بی‌خبر، می‌تونی روز یکی رو قشنگ‌تر کنی.</p>
+      <button id="secretButton" class="secret-button" type="button"><span class="lock-icon">✧</span> ستاره‌ی پنهان را پیدا کن</button>
+      <p class="signature">با کلی مهر، زیر آسمون آبی <span>♡</span></p>
+    </section>
+  </main>
+
+  <footer class="footer"><span>✦ جهانی کوچک برای تو</span><span>با فکر تو و یه عالمه ذوق ساخته شده</span><a href="#home">بازگشت به آسمان ↑</a></footer>
+
+  <div id="modalBackdrop" class="modal-backdrop" hidden>
+    <section class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button id="closeModal" class="modal-close" type="button" aria-label="بستن">×</button>
+      <div id="modalVisual" class="modal-visual" aria-hidden="true"></div>
+      <p id="modalEyebrow" class="eyebrow">کشفی کوچک</p>
+      <h2 id="modalTitle">شگفتی کوچکی</h2>
+      <div id="modalBody" class="modal-body"></div>
+      <div id="modalExtra"></div>
+    </section>
+  </div>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="script.js"></script>
+</body>
+</html>
