@@ -26,7 +26,7 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           # مسیر فایل‌های سایت شما (اگر در ریشه است، '.' بگذارید)
-          path: './index.html'
+          path: '.'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
