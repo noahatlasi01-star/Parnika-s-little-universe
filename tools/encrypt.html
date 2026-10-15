@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ابزار محلی رمزنگاری PARNIKA</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#071329;color:#edf5ff;font:15px/1.9 Tahoma,Arial,sans-serif;padding:22px}.wrap{max-width:850px;margin:auto}h1{font-size:1.7rem;color:#bceaff}p{color:#b1c5e1}.card{background:#10213e;border:1px solid #315078;border-radius:18px;padding:20px;margin:18px 0}label{display:block;margin:12px 0 5px}input,textarea,select{width:100%;padding:12px;border:1px solid #476488;border-radius:10px;background:#071329;color:white;font:inherit}textarea{min-height:220px;direction:ltr;text-align:left;font:13px/1.6 monospace}button{padding:12px 18px;border:0;border-radius:30px;background:linear-gradient(120deg,#a8e8ff,#d9c4ff);color:#102345;font-weight:bold;cursor:pointer;margin-top:15px}.note{font-size:.88rem;background:#211d40;padding:12px;border-radius:10px}.status{margin-top:10px;white-space:pre-wrap}.row{display:grid;grid-template-columns:1fr 1fr;gap:15px}@media(max-width:600px){.row{grid-template-columns:1fr}body{padding:14px}}
+</style>
+</head>
+<body><main class="wrap">
+<h1>✦ ابزار محلی رمزنگاری PARNIKA</h1>
+<p>این ابزار محتوای JSON را در مرورگر با PBKDF2 + AES-256-GCM رمزنگاری می‌کند. هیچ چیزی به سرور ارسال نمی‌شود.</p>
+<div class="card">
+<div class="note">رمز را در این ابزار انتخاب کن و هر دو فایل letters و gifts را با همان رمز بساز. رمز واقعی را داخل مخزن عمومی ذخیره نکن. برای امنیت بهتر از عبارت طولانی و غیرقابل حدس استفاده کن.</div>
+<label for="kind">نوع محتوا</label><select id="kind"><option value="letters">نامه‌ها → data/letters.enc.json</option><option value="gifts">هدیه‌ها → data/gifts.enc.json</option></select>
+<label for="pass">رمز مشترک (فقط در همین مرورگر)</label><input id="pass" type="password" autocomplete="new-password" placeholder="یک رمز قوی وارد کن">
+<label for="json">محتوای JSON اصلی</label><textarea id="json" spellcheck="false"></textarea>
+<button id="encrypt">رمزنگاری و دریافت فایل</button><div id="status" class="status" role="status"></div>
+</div>
+<div class="card"><h2>نمونه‌ی ساختار نامه‌ها</h2><pre dir="ltr">{
+  "letters": [
+    {
+      "title": "عنوان نامه",
+      "preview": "پیش‌نمایش کوتاه",
+      "body": "متن کامل نامه"
+    }
+  ]
+}</pre><h2>نمونه‌ی ساختار هدیه‌ها</h2><pre dir="ltr">{
+  "gifts": [
+    {
+      "title": "عنوان هدیه",
+      "description": "توضیح کوتاه",
+      "emoji": "🎁",
+      "glow": "#9de7ff",
+      "letter": "نامه‌ی داخل هدیه"
+    }
+  ]
+}</pre></div>
+</main>
+<script>
+const $=s=>document.querySelector(s);
+const samples={
+ letters:{letters:[{title:"نامه‌ی نمونه",preview:"یک پیش‌نمایش کوتاه",body:"متن نامه را اینجا بنویس."}]},
+ gifts:{gifts:[{title:"هدیه‌ی نمونه",description:"توضیح کوتاه",emoji:"🎁",glow:"#9de7ff",letter:"نامه‌ی داخل هدیه"}]}
+};
+function setSample(){ $("#json").value=JSON.stringify(samples[$("#kind").value],null,2); }
+$("#kind").addEventListener("change",setSample);setSample();
+const b64=bytes=>{let s="";bytes.forEach(b=>s+=String.fromCharCode(b));return btoa(s)};
+$("#encrypt").addEventListener("click",async()=>{
+ const status=$("#status");status.textContent="";
+ try{
+  if(!crypto.subtle)throw new Error("Web Crypto در این مرورگر فعال نیست؛ صفحه را روی localhost یا GitHub Pages باز کن.");
+  const pass=$("#pass").value;if(pass.length<12)throw new Error("برای امنیت بهتر، رمز را حداقل ۱۲ نویسه انتخاب کن.");
+  const obj=JSON.parse($("#json").value);
+  const keyName=$("#kind").value;
+  if(!Array.isArray(obj[keyName]))throw new Error(`ساختار JSON باید شامل آرایه‌ی ${keyName} باشد.`);
+  const iterations=250000,salt=crypto.getRandomValues(new Uint8Array(16)),iv=crypto.getRandomValues(new Uint8Array(12));
+  const material=await crypto.subtle.importKey("raw",new TextEncoder().encode(pass),"PBKDF2",false,["deriveKey"]);
+  const key=await crypto.subtle.deriveKey({name:"PBKDF2",salt,iterations,hash:"SHA-256"},material,{name:"AES-GCM",length:256},false,["encrypt"]);
+  const cipher=await crypto.subtle.encrypt({name:"AES-GCM",iv},key,new TextEncoder().encode(JSON.stringify(obj)));
+  const payload={version:1,kdf:"PBKDF2-SHA-256",iterations,salt:b64(salt),iv:b64(iv),ciphertext:b64(new Uint8Array(cipher))};
+  const blob=new Blob([JSON.stringify(payload,null,2)],{type:"application/json"});
+  const url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;a.download=keyName+".enc.json";a.click();URL.revokeObjectURL(url);
+  status.textContent="فایل رمزنگاری‌شده ساخته شد. آن را جایگزین data/"+keyName+".enc.json کن و برای هر دو فایل از یک رمز استفاده کن.";
+ }catch(e){status.textContent="خطا: "+e.message;}
+});
+</script></body></html>
